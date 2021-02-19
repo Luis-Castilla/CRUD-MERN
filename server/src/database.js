@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
+
+require('dotenv').config();
+
+console.log(process.env.URI);
 const {
     mongodb
 } = require('./config');
-
 mongoose.connect(mongodb.URI, {
     useNewUrlParser: true
 })
     .then(db => console.log('Database is connected'))
     .catch(err => {
-        mongoose.connect('mongodb+srv://LuisADM:NcpYtgQc46wUSy5I@cluster0.zkjrm.mongodb.net/test?retryWrites=true&w=majority', {
+        mongoose.connect(process.env.URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useFindAndModify: false,
